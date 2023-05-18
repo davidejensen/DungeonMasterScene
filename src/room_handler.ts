@@ -1,6 +1,6 @@
 import { Transform } from "@dcl/sdk/ecs";
 import { Vector3 } from "@dcl/sdk/math";
-import { westDoor, eastDoor, northDoor, southDoor } from ".";
+import { westDoor, eastDoor, northDoor, southDoor, crate } from ".";
 
 const normalScaleNorthSouth = Vector3.create(1.5,2.5,1)
 const normalScaleEastWest = Vector3.create(1,2.5,1.5)
@@ -36,4 +36,9 @@ export function generateNewChest()
 export function generateNewEnemy()
 {
     
+}
+
+export function useChest()
+{
+    Transform.getMutable(crate).scale = Vector3.Zero()
 }

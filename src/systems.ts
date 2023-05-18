@@ -37,6 +37,7 @@ export function crateSystem(){
   for (const [entity] of entitiesWithCrate) {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       console.log(Crate.getMutable(entity).crateName)
+      BounceScaling.createOrReplace(entity)
     }
   }
 }
@@ -95,6 +96,25 @@ export function bounceScalingSystem(dt: number) {
     } else {
       const factor = 0.9 + 0.2 * Math.exp(-1.5 * m.t) * Math.sin(10 * m.t)
       Transform.getMutable(entity).scale = Vector3.scale(Vector3.One(), factor)
+    }
+  }
+}
+
+export function scaleToZeroSystem(dt: number) {
+  const usedCrates = engine.getEntitiesWith(BounceScaling, Transform)
+  for (const [entity] of usedCrates) {
+    const m = BounceScaling.getMutable(entity)
+    m.t += dt
+
+    if (m.t > 1.7) {
+      Transform.getMutable(entity).scale = Vector3.Zero()
+      BounceScaling.deleteFrom(entity)
+    } else {
+      console.log(Transform.getMutable(entity).scale.x);
+      Transform.getMutable(entity).scale = {
+        x: Transform.getMutable(entity).scale.x - 0.01, 
+        y: Transform.getMutable(entity).scale.y - 0.01, 
+        z: Transform.getMutable(entity).scale.z - 0.01}
     }
   }
 }
