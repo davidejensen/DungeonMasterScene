@@ -1,5 +1,5 @@
-import { OPENAI_API_KEY, OPENAI_URL } from "./openai";
-import { initialPrompt } from "./prompt";
+import { OPENAI_API_KEY, OPENAI_URL, OPENAI_ORG} from "./openai";
+import { createCharacterPrompt } from "./prompts/create_character";
 
 const callUrl: string = "";
 
@@ -18,7 +18,7 @@ export async function sendInitialPrompt()
     const body: object = {
         'model': "gpt-3.5-turbo",
         'max_tokens': 60,
-        'messages': [{"role": "user", "content": initialPrompt}]
+        'messages': [{"role": "user", "content": createCharacterPrompt}]
       };
 
       postToApi(body)
@@ -29,7 +29,9 @@ export function createHeader()
     return {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
+        'OpenAI-Organization': OPENAI_ORG,
     };    
+     
 }
 
 export async function postToApi(body: object)
