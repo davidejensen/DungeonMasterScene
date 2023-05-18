@@ -7,6 +7,7 @@ import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { Cube } from './components'
 import { createCube } from './factory'
+import { sendSelectedCharacter } from './gpt_api'
 import { message_types } from './message_types'
 import { generateNewRoom } from './room_handler'
 
@@ -137,6 +138,7 @@ function sendPrompt()
 function pickCharacter(characterType: string)
 {
   console.log(characterType);
+  sendSelectedCharacter(characterType)
   setupUi();
 }
 
@@ -146,4 +148,9 @@ export function setupUi() {
 
 export function setupCharacerSelectionUi() {
   ReactEcsRenderer.setUiRenderer(uiComponentCharacterSelection)
+}
+
+export function setupCharacterStatsUi()
+{
+  
 }

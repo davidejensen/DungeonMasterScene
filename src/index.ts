@@ -24,7 +24,7 @@ engine.addSystem(scaleToZeroSystem)
 
 // Initial function executed when scene is evaluated and after systems are created
 executeTask(async function () {
-  //sendInitialPrompt();
+  sendInitialPrompt();
   const wall1 = createWall(15.5, 2.5, 7.5, 1,5,15);
   const wall2 = createWall(7.5, 2.5, 15.5, 15,5,1);
   const wall3 = createWall(0.5, 2.5, 7.5, 1,5,15);
@@ -46,4 +46,3 @@ executeTask(async function () {
   Material.setPbrMaterial(enemy, { albedoColor: Color4.create(0, 1.0, 1.0) })
 })
 
-setupCharacerSelectionUi()
