@@ -1,8 +1,8 @@
 import { engine, Entity, executeTask, Material, Transform } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 
-import { createCrate, createCube, createDoor, createEnemy, createWall } from './factory'
-import { bounceScalingSystem, circularSystem, crateSystem, doorSystem, enemySystem, scaleToZeroSystem, spawnerSystem } from './systems'
+import { createCrate, createDoor, createEnemy, createWall } from './factory'
+import { crateSystem, doorSystem, enemySystem, scaleToZeroSystem } from './systems'
 
 import { setupCharacerSelectionUi, setupUi } from './ui'
 import { sendInitialPrompt } from './apiModules/gpt_api_character_creation_module'
