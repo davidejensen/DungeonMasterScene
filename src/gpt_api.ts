@@ -16,9 +16,11 @@ export async function sendMessage(message: object)
 export async function sendInitialPrompt()
 {
     const body: object = {
-        'prompt': initialPrompt,
-        'max_tokens': 60
+        'model': "gpt-3.5-turbo",
+        'max_tokens': 60,
+        'messages': [{"role": "user", "content": initialPrompt}]
       };
+
       postToApi(body)
 }
 
@@ -39,9 +41,13 @@ export async function postToApi(body: object)
           method: "POST",
           body: JSON.stringify(body),
         })
+        console.log(response.status)
         let json = await response.json()
-        console.log(json)
+        console.log("asdasd2")
+        console.log(JSON.stringify(json))
+        console.log("asdasd3")
     } catch {
+        console.log("asdasd")
         console.log("failed to reach URL")
     }
 }
