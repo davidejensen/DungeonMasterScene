@@ -1,7 +1,7 @@
 import { engine, Entity, executeTask, Material, Transform } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 
-import { createCrate, createCube, createDoor, createWall } from './factory'
+import { createCrate, createCube, createDoor, createEnemy, createWall } from './factory'
 import { bounceScalingSystem, circularSystem, doorSystem, spawnerSystem } from './systems'
 
 import { setupUi } from './ui'
@@ -33,8 +33,11 @@ executeTask(async function () {
   Material.setPbrMaterial(westDoor, { albedoColor: Color4.create(1.0, 0, 0) })
   Material.setPbrMaterial(southDoor, { albedoColor: Color4.create(1.0, 0, 0) })
 
-  const crate = createCrate(8, 1, 8, 2,1,1, 'Crate')
+  const crate = createCrate(8, 0.25, 8, 0.75,0.5,0.5, 'Crate')
   Material.setPbrMaterial(crate, { albedoColor: Color4.create(1.0, 1.0, 0) })
+
+  const enemy = createEnemy(10,1,6, 1,2,1, 'Skeleton')
+  Material.setPbrMaterial(enemy, { albedoColor: Color4.create(0, 1.0, 1.0) })
 })
 
 setupUi()

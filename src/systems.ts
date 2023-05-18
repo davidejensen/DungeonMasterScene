@@ -19,6 +19,7 @@ import { respawnPlayer } from './utils'
 export const BounceScaling = engine.defineComponent('BounceScaling', { t: Schemas.Number })
 export const Door = engine.defineComponent('Door', {t: Schemas.Number, doorName: Schemas.String})
 export const Crate = engine.defineComponent('Crate', {t: Schemas.Number, crateName: Schemas.String})
+export const Enemy = engine.defineComponent('Enemy', {t: Schemas.Number, enemyName: Schemas.String})
 
 export function doorSystem(){
   const entitiesWithDoor = engine.getEntitiesWith(MeshRenderer, Transform, Door)
@@ -36,6 +37,15 @@ export function crateSystem(){
   for (const [entity] of entitiesWithCrate) {
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       console.log(Crate.getMutable(entity).crateName)
+    }
+  }
+}
+
+export function enemySystem(){
+  const entitiesWithEnemy = engine.getEntitiesWith(MeshRenderer, Transform, Enemy)
+  for (const [entity] of entitiesWithEnemy) {
+    if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
+      console.log(Enemy.getMutable(entity).enemyName)
     }
   }
 }

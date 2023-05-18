@@ -9,7 +9,7 @@ import {
   InputAction
 } from '@dcl/sdk/ecs'
 import { Cube, Wall } from './components'
-import { Crate, Door } from './systems'
+import { Crate, Door, Enemy } from './systems'
 
 export function createWall(x: number, y: number, z: number, sx: number, sy: number, sz: number): Entity {
   const meshEntity = engine.addEntity()
@@ -63,6 +63,32 @@ export function createCrate(x: number, y: number, z: number, sx: number, sy: num
         eventInfo: {
           button: InputAction.IA_PRIMARY,
           hoverText: 'to open ' + crateName,
+          maxDistance: 6,
+          showFeedback: true
+        }
+      }
+    ]
+  })
+
+  return meshEntity
+}
+
+export function createEnemy(x: number, y: number, z: number, sx: number, sy: number, sz: number, enemyName: string): Entity {
+  const meshEntity = engine.addEntity()
+
+  Enemy.create(meshEntity, {enemyName: enemyName})
+
+  Transform.create(meshEntity, { position: {x,y,z} , scale: {x: sx,y: sy, z: sz}})
+  MeshRenderer.setBox(meshEntity)
+  MeshCollider.setBox(meshEntity)
+  
+  PointerEvents.create(meshEntity, {
+    pointerEvents: [
+      {
+        eventType: PointerEventType.PET_DOWN,
+        eventInfo: {
+          button: InputAction.IA_PRIMARY,
+          hoverText: 'to attack ' + enemyName,
           maxDistance: 6,
           showFeedback: true
         }
