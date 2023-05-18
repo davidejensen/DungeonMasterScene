@@ -2,7 +2,7 @@ import { engine, Entity, executeTask, Material, Transform } from '@dcl/sdk/ecs'
 import { Color4 } from '@dcl/sdk/math'
 
 import { createCrate, createCube, createDoor, createEnemy, createWall } from './factory'
-import { bounceScalingSystem, circularSystem, doorSystem, spawnerSystem } from './systems'
+import { bounceScalingSystem, circularSystem, crateSystem, doorSystem, enemySystem, spawnerSystem } from './systems'
 
 import { setupUi } from './ui'
 
@@ -16,6 +16,8 @@ export let southDoor: Entity;
 
 // Defining behavior. See `src/systems.ts` file.
 engine.addSystem(doorSystem)
+engine.addSystem(crateSystem)
+engine.addSystem(enemySystem)
 
 // Initial function executed when scene is evaluated and after systems are created
 executeTask(async function () {
