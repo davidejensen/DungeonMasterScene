@@ -8,6 +8,7 @@ import {
   PointerEventType,
   InputAction
 } from '@dcl/sdk/ecs'
+
 import { Cube, Wall } from './components'
 import { Crate, Door, Enemy } from './systems'
 

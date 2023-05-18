@@ -20,5 +20,6 @@ export module message_types{
     export enum ActionType {
         ROLL,
         CHARACTER,
+        OPEN_DOOR,
     }
 }

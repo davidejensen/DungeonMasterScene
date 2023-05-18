@@ -1,21 +1,41 @@
+import { OPENAI_API_KEY, OPENAI_URL } from "./openai";
+import { initialPrompt } from "./prompt";
+
 const callUrl: string = "";
 
-export async function sendMessage(message: string)
+
+export async function sendMessage(message: object)
 {
-    postToApi(message)
+    const body: object = {
+        'prompt': message,
+        'max_tokens': 60
+      };
+    postToApi(body)
 }
 
 export async function sendInitialPrompt()
 {
-    //load file and send it
-    //postToApi(fileContent)
+    const body: object = {
+        'prompt': initialPrompt,
+        'max_tokens': 60
+      };
+      postToApi(body)
 }
 
-async function postToApi(body: string)
+export function createHeader()
 {
+    return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`,
+    };    
+}
+
+export async function postToApi(body: object)
+{
+    let headers = createHeader()
     try {
-        let response = await fetch(callUrl, {
-          headers: { "Content-Type": "application/json" },
+        let response = await fetch(OPENAI_URL, {
+          headers: headers ,
           method: "POST",
           body: JSON.stringify(body),
         })
