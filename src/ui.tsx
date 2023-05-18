@@ -17,9 +17,7 @@ const uiComponent = () => (
     uiTransform={{
       width: 700,
       height: 100,
-      //  { top: 16, right: 0, bottom: 8 left: 270 },
       margin: '16px 0 8px 270px',
-      // { top: 4, bottom: 4, left: 4, right: 4 },
       padding: 4,
     }}
     uiBackground={{ color: Color4.create(0.5, 0.8, 0.1, 0.6) }}
@@ -56,7 +54,72 @@ const uiComponent = () => (
       />
      </UiEntity>
   </UiEntity>
-  
+)
+
+let promptedText: string = "Welcome to the dungeon";
+
+const uiComponentCharacterSelection = () => (
+  <UiEntity
+    uiTransform={{
+      width: 600,
+      height: 300,
+      position: 100,
+      flexDirection: 'column',
+      margin: '16px 0 8px 270px',
+      padding: 4,
+    }}
+    uiBackground={{ color: Color4.create(0.5, 0.8, 0.1, 0.6) }}
+    >
+    <UiEntity
+      uiTransform={{
+        width: '600',
+        height: '30%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}
+      uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
+    >
+      <Label
+        fontSize={12}
+        color={ Color4.fromHexString("#ffffffff") }
+        value = {"\n\n\n\n\n\n\n" + promptedText + "\n\n\nPick your character \n"}
+      />
+     </UiEntity>
+
+    <UiEntity
+      uiTransform={{
+        width: '600',
+        height: '70%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}
+      uiBackground={{ color: Color4.fromHexString("#70ac76ff") }}
+    >
+      <Button
+        onMouseDown={()=>{pickCharacter("warrior")}}
+        uiTransform={{ width: 200, height: 100, margin: 4 }}
+        value='Warrior'
+        variant='primary'
+        fontSize={15}
+      />      
+      <Button
+        onMouseDown={()=>{pickCharacter("mage")}}
+        uiTransform={{ width: 200, height: 100, margin: 4 }}
+        value='Mage'
+        variant='primary'
+        fontSize={15}
+      />      
+      <Button
+        onMouseDown={()=>{pickCharacter("rogue")}}
+        uiTransform={{ width: 200, height: 100, margin: 4 }}
+        value='Rogue'
+        variant='primary'
+        fontSize={15}
+      />
+     </UiEntity>
+  </UiEntity>
 )
 
 function getPlayerPosition() {
@@ -71,27 +134,16 @@ function sendPrompt()
   console.log(currentTextString)
 }
 
-async function testRequest(){
-  try {
-    let response = await fetch('https://events.decentraland.org/api/events')
-    let json = await response.json()
-    console.log(json.data[0].id)
-  } catch {
-    console.log("failed to reach URL")
-  }
-
-  let newTodo = Object.assign(new message_types.MessageSent(), `{"actionType":"${message_types.ActionType.CHARACTER}","content":"asdasdasd"}`);
-  let messageSent = new message_types.MessageSent();
-  messageSent.actionType = message_types.ActionType.CHARACTER;
-  messageSent.content = "testtest";
-  
-  console.log(JSON.stringify(messageSent));
-  console.log(newTodo.actionType);
-  console.log(newTodo.content);
-  
-  console.log(JSON.parse(JSON.stringify(`{"actionType":${message_types.ActionType.CHARACTER},"content":"asdasdasd"}`)))
+function pickCharacter(characterType: string)
+{
+  console.log(characterType);
+  setupUi();
 }
 
 export function setupUi() {
   ReactEcsRenderer.setUiRenderer(uiComponent)
+}
+
+export function setupCharacerSelectionUi() {
+  ReactEcsRenderer.setUiRenderer(uiComponentCharacterSelection)
 }

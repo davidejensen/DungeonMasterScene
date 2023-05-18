@@ -37,8 +37,3 @@ export function generateNewEnemy()
 {
     
 }
-
-export function useChest()
-{
-    Transform.getMutable(crate).scale = Vector3.Zero()
-}

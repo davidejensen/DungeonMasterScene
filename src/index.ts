@@ -4,7 +4,7 @@ import { Color4 } from '@dcl/sdk/math'
 import { createCrate, createCube, createDoor, createEnemy, createWall } from './factory'
 import { bounceScalingSystem, circularSystem, crateSystem, doorSystem, enemySystem, scaleToZeroSystem, spawnerSystem } from './systems'
 
-import { setupUi } from './ui'
+import { setupCharacerSelectionUi, setupUi } from './ui'
 import { sendInitialPrompt } from './gpt_api'
 
 // export all the functions required to make the scene work
@@ -46,4 +46,4 @@ executeTask(async function () {
   Material.setPbrMaterial(enemy, { albedoColor: Color4.create(0, 1.0, 1.0) })
 })
 
-setupUi()
+setupCharacerSelectionUi()

@@ -13,9 +13,6 @@ import { createCube } from './factory'
 import { generateNewRoom } from './room_handler'
 import { respawnPlayer } from './utils'
 
-/**
- * BounceScaling is the flag-component with the time elapsed since creation.
- */
 export const BounceScaling = engine.defineComponent('BounceScaling', { t: Schemas.Number })
 export const Door = engine.defineComponent('Door', {t: Schemas.Number, doorName: Schemas.String})
 export const Crate = engine.defineComponent('Crate', {t: Schemas.Number, crateName: Schemas.String})
@@ -110,7 +107,6 @@ export function scaleToZeroSystem(dt: number) {
       Transform.getMutable(entity).scale = Vector3.Zero()
       BounceScaling.deleteFrom(entity)
     } else {
-      console.log(Transform.getMutable(entity).scale.x);
       Transform.getMutable(entity).scale = {
         x: Transform.getMutable(entity).scale.x - 0.01, 
         y: Transform.getMutable(entity).scale.y - 0.01, 
