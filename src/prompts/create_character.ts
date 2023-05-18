@@ -14,6 +14,4 @@ Characters have the following structure
 
 You will return the character requested in the following JSON data structure:
 {"action":"character", "character":{CHARACTER_DATA}}
-
-I want you to create a WARRIOR character
 `

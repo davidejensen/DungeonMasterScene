@@ -7,7 +7,7 @@ import { Color4 } from '@dcl/sdk/math'
 import ReactEcs, { Button, Input, Label, ReactEcsRenderer, UiEntity } from '@dcl/sdk/react-ecs'
 import { Cube } from './components'
 import { createCube } from './factory'
-import { sendSelectedCharacter } from './gpt_api'
+import { sendSelectedCharacter } from './apiModules/gpt_api_character_creation_module'
 import { message_types } from './message_types'
 import { generateNewRoom } from './room_handler'
 

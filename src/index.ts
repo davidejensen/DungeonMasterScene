@@ -5,7 +5,7 @@ import { createCrate, createCube, createDoor, createEnemy, createWall } from './
 import { bounceScalingSystem, circularSystem, crateSystem, doorSystem, enemySystem, scaleToZeroSystem, spawnerSystem } from './systems'
 
 import { setupCharacerSelectionUi, setupUi } from './ui'
-import { sendInitialPrompt } from './gpt_api'
+import { sendInitialPrompt } from './apiModules/gpt_api_character_creation_module'
 
 // export all the functions required to make the scene work
 export * from '@dcl/sdk'
