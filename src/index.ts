@@ -5,6 +5,7 @@ import { createCrate, createCube, createDoor, createEnemy, createWall } from './
 import { bounceScalingSystem, circularSystem, crateSystem, doorSystem, enemySystem, spawnerSystem } from './systems'
 
 import { setupUi } from './ui'
+import { sendInitialPrompt } from './gpt_api'
 
 // export all the functions required to make the scene work
 export * from '@dcl/sdk'
@@ -21,6 +22,7 @@ engine.addSystem(enemySystem)
 
 // Initial function executed when scene is evaluated and after systems are created
 executeTask(async function () {
+  sendInitialPrompt();
   const wall1 = createWall(15.5, 2.5, 7.5, 1,5,15);
   const wall2 = createWall(7.5, 2.5, 15.5, 15,5,1);
   const wall3 = createWall(0.5, 2.5, 7.5, 1,5,15);
