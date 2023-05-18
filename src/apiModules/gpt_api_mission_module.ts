@@ -13,6 +13,7 @@ export async function sendInitialPrompt()
         'max_tokens': 60,
         'messages': [{"role": "user", "content": createCharacterPrompt}]
       };
+      
       let response = await fetch(OPENAI_URL, {
         headers: createHeader(),
         method: "POST",
@@ -27,7 +28,7 @@ export async function sendInitialPrompt()
     setupCharacerSelectionUi()
 }
 
-export async function sendSelectedCharacter(selectedCharacter: string)
+export async function sendSelected(selectedCharacter: string)
 {
     const requestContent = `{"action":"choose_character", value:"${selectedCharacter.toUpperCase()}"}`;
     const body: object = {

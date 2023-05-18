@@ -28,7 +28,7 @@ export async function sendInitialPrompt()
 
 export async function sendSelectedCharacter(selectedCharacter: string)
 {
-    const requestContent = `{"action":"choose_character", value:"${selectedCharacter.toUpperCase()}"}`;
+    const requestContent = `I want you to create a ${selectedCharacter.toUpperCase()} character"}`;
     const body: object = {
         'model': "gpt-3.5-turbo",
         'max_tokens': 60,

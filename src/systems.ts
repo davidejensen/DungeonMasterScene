@@ -14,7 +14,7 @@ import { generateNewRoom } from './room_handler'
 import { respawnPlayer } from './utils'
 
 export const BounceScaling = engine.defineComponent('BounceScaling', { t: Schemas.Number })
-export const Door = engine.defineComponent('Door', {t: Schemas.Number, doorName: Schemas.String})
+export const Door = engine.defineComponent('Door', {t: Schemas.Number, doorName: Schemas.String, spawnPosition: Schemas.Vector3})
 export const Crate = engine.defineComponent('Crate', {t: Schemas.Number, crateName: Schemas.String})
 export const Enemy = engine.defineComponent('Enemy', {t: Schemas.Number, enemyName: Schemas.String})
 
@@ -24,7 +24,7 @@ export function doorSystem(){
     if (inputSystem.isTriggered(InputAction.IA_PRIMARY, PointerEventType.PET_DOWN, entity)) {
       console.log(Door.getMutable(entity).doorName)
       generateNewRoom(Math.random() < 0.5, Math.random() < 0.5, Math.random() < 0.5, Math.random() < 0.5)
-      respawnPlayer();
+      respawnPlayer(Door.getMutable(entity).spawnPosition);
     }
   }
 }

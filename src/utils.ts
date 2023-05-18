@@ -1,12 +1,12 @@
 import { engine, Transform } from "@dcl/sdk/ecs"
-import { Quaternion } from "@dcl/sdk/math"
+import { Quaternion, Vector3 } from "@dcl/sdk/math"
+import { movePlayerTo } from "~system/RestrictedActions"
 
-export function respawnPlayer()
+export function respawnPlayer(pos: Vector3)
 {
-    const playerTransform = Transform.getMutable(engine.PlayerEntity)
-    playerTransform.position = {x: 1.5, y: 0.88, z: 1.5}
-
-    const cameraRotation = Transform.getMutable(engine.CameraEntity)
-    cameraRotation.rotation = Quaternion.Zero()
-    
+    movePlayerTo({
+        newRelativePosition: pos,
+        cameraTarget: {x: 8, y: 0.88, z: 8}
+    })
 }
+

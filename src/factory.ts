@@ -8,6 +8,7 @@ import {
   PointerEventType,
   InputAction
 } from '@dcl/sdk/ecs'
+import { Vector3 } from '@dcl/sdk/math'
 
 import { Cube, Wall } from './components'
 import { Crate, Door, Enemy } from './systems'
@@ -23,10 +24,10 @@ export function createWall(x: number, y: number, z: number, sx: number, sy: numb
   return meshEntity
 }
 
-export function createDoor(x: number, y: number, z: number, sx: number, sy: number, sz: number, doorName: string): Entity {
+export function createDoor(x: number, y: number, z: number, sx: number, sy: number, sz: number, doorName: string, spawnPosition: Vector3): Entity {
   const meshEntity = engine.addEntity()
 
-  Door.create(meshEntity, {doorName: doorName})
+  Door.create(meshEntity, {doorName: doorName, spawnPosition: spawnPosition})
 
   Transform.create(meshEntity, { position: {x,y,z} , scale: {x: sx,y: sy, z: sz}})
   MeshRenderer.setBox(meshEntity)

@@ -30,10 +30,10 @@ executeTask(async function () {
   const wall3 = createWall(0.5, 2.5, 7.5, 1,5,15);
   const wall4 = createWall(7.5, 2.5, 0.5, 15,5,1);
 
-  eastDoor = createDoor(15, 1.25, 7.5, 1,2.5,1.5, 'East Room');
-  northDoor = createDoor(7.5, 1.25, 15, 1.5,2.5,1, 'North Room');
-  westDoor = createDoor(1, 1.25, 7.5, 1,2.5,1.5, 'West Room');
-  southDoor = createDoor(7.5, 1.25, 1, 1.5,2.5,1, 'South Room');
+  eastDoor = createDoor(15, 1.25, 7.5, 1,2.5,1.5, 'East Room', {x:1.5,y:1.25,z:7});
+  northDoor = createDoor(7.5, 1.25, 15, 1.5,2.5,1, 'North Room', {x:7,y:1.25,z:1.6});
+  westDoor = createDoor(1, 1.25, 7.5, 1,2.5,1.5, 'West Room', {x:14.5,y:1.25,z:7});
+  southDoor = createDoor(7.5, 1.25, 1, 1.5,2.5,1, 'South Room', {x:7,y:1.25,z:14.5});
   Material.setPbrMaterial(eastDoor, { albedoColor: Color4.create(1.0, 0, 0) })
   Material.setPbrMaterial(northDoor, { albedoColor: Color4.create(1.0, 0, 0) })
   Material.setPbrMaterial(westDoor, { albedoColor: Color4.create(1.0, 0, 0) })
